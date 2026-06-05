@@ -1,0 +1,19 @@
+import api from "./axios";
+
+// ✅ Obtener todos los tickets
+export const getTickets = () => api.get("/tickets");
+
+// ✅ Crear ticket
+export const createTicket = (data) => api.post("/tickets", data);
+
+// ✅ Buscar ticket
+export const buscarTicket = (params) =>
+  api.get("/tickets/buscar", { params });
+
+// ✅ Actualizar ticket
+export const updateTicket = (params, data) =>
+  api.put("/tickets/buscar", data, { params });
+
+// ✅ Agregar componente
+export const agregarComponente = (id, data) =>
+  api.post(`/tickets/${id}/agregar-componente`, data);
