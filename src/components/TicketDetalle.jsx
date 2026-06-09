@@ -1,9 +1,16 @@
 import { buscarTicket } from "../api/tickets.api";
 import AddComponente from "./AddComponente";
+import UpdateTicket from "./UpdateTicket";
 
 function TicketDetalle({ ticket, onUpdated }) {
 
-  // ✅ Recargar detalle desde backend
+  // ✅ PROTECCIÓN GENERAL
+  if (!ticket) return null;
+
+  // ✅ evitar errores de undefined
+  const detalles = ticket.detalles || [];
+
+  // ✅ recargar el ticket desde backend
   const reloadDetalle = async () => {
     try {
       const params = {};
@@ -15,7 +22,7 @@ function TicketDetalle({ ticket, onUpdated }) {
 
       const res = await buscarTicket(params);
 
-      // ✅ en vez de setState aquí → actualizamos en el padre
+      // ✅ actualiza estado en el padre (Home.jsx)
       onUpdated(res.data);
 
     } catch (error) {
@@ -23,14 +30,14 @@ function TicketDetalle({ ticket, onUpdated }) {
     }
   };
 
-  if (!ticket) return null;
-
   return (
-    <div style={{
-      border: "2px solid black",
-      padding: "15px",
-      marginTop: "20px"
-    }}>
+    <div
+      style={{
+        border: "2px solid black",
+        padding: "15px",
+        marginTop: "20px",
+      }}
+    >
       <h2>Detalle del Ticket</h2>
 
       <p><b>Serie:</b> {ticket.serie}</p>
@@ -41,21 +48,30 @@ function TicketDetalle({ ticket, onUpdated }) {
 
       <h3>Componentes</h3>
 
-      {ticket.detalles.length === 0 ? (
+      {/* ✅ PROTECCIÓN */}
+      {detalles.length === 0 ? (
         <p>No hay componentes registrados</p>
       ) : (
         <ul>
-          {ticket.detalles.map((d) => (
+          {detalles.map((d) => (
             <li key={d.id}>
-              {d.componente}
+              {d.componente} - {d.tipoGarantia}
+              {d.observaciones && ` (${d.observaciones})`}
             </li>
           ))}
         </ul>
       )}
 
+      {/* ✅ AGREGAR COMPONENTE */}
       <AddComponente
         ticketId={ticket.id}
         onAdded={reloadDetalle}
+      />
+
+      {/* ✅ ACTUALIZAR / CERRAR */}
+      <UpdateTicket
+        ticket={ticket}
+        onUpdated={reloadDetalle}
       />
     </div>
   );
