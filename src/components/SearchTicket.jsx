@@ -22,26 +22,28 @@ function SearchTicket({ onResult }) {
   };
 
   return (
-    <div style={{ margin: "20px 0" }}>
-      <h2>Buscar Ticket</h2>
+    <div>
+      <h2 className="font-semibold mb-3">Buscar Ticket</h2>
 
       <input
+        className="border p-2 rounded w-full mb-2"
         placeholder="Serie"
         value={serie}
         onChange={(e) => setSerie(e.target.value)}
       />
-
-      <br />
-
       <input
-        placeholder="Nro Inventario"
+        className="border p-2 rounded w-full mb-2"
+        placeholder="Inventario"
         value={inventario}
         onChange={(e) => setInventario(e.target.value)}
       />
 
-      <br />
-
-      <button onClick={handleSearch}>Buscar</button>
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        onClick={handleSearch}
+      >
+        Buscar
+      </button>
     </div>
   );
 }

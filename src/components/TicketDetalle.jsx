@@ -31,28 +31,32 @@ function TicketDetalle({ ticket, onUpdated }) {
   };
 
   return (
-    <div
-      style={{
-        border: "2px solid black",
-        padding: "15px",
-        marginTop: "20px",
-      }}
-    >
-      <h2>Detalle del Ticket</h2>
+    <div>
+      <h2 className="text-xl font-bold mb-3">Detalle del Ticket</h2>
 
       <p><b>Serie:</b> {ticket.serie}</p>
       <p><b>Inventario:</b> {ticket.nroInventario}</p>
-      <p><b>Estado:</b> {ticket.estado}</p>
-      <p><b>Problema:</b> {ticket.problema}</p>
-      <p><b>Tipo Daño:</b> {ticket.tipoDano}</p>
 
-      <h3>Componentes</h3>
+      <p>
+        <b>Estado:</b>
+        <span
+          className={`ml-2 px-2 py-1 rounded text-sm
+          ${
+            ticket.estado === "Cerrado"
+              ? "bg-red-100 text-red-600"
+              : "bg-green-100 text-green-600"
+          }`}
+        >
+          {ticket.estado}
+        </span>
+      </p>
 
-      {/* ✅ PROTECCIÓN */}
+      <h3 className="mt-4 font-semibold">Componentes</h3>
+
       {detalles.length === 0 ? (
-        <p>No hay componentes registrados</p>
+        <p>No hay componentes</p>
       ) : (
-        <ul>
+        <ul className="mt-2 list-disc ml-5">
           {detalles.map((d) => (
             <li key={d.id}>
               {d.componente} - {d.tipoGarantia}
@@ -62,17 +66,8 @@ function TicketDetalle({ ticket, onUpdated }) {
         </ul>
       )}
 
-      {/* ✅ AGREGAR COMPONENTE */}
-      <AddComponente
-        ticketId={ticket.id}
-        onAdded={reloadDetalle}
-      />
-
-      {/* ✅ ACTUALIZAR / CERRAR */}
-      <UpdateTicket
-        ticket={ticket}
-        onUpdated={reloadDetalle}
-      />
+      <AddComponente ticketId={ticket.id} onAdded={reloadDetalle} />
+      <UpdateTicket ticket={ticket} onUpdated={reloadDetalle} />
     </div>
   );
 }

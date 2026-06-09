@@ -41,63 +41,33 @@ function TicketForm({ onCreated }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
-      <h2>Crear Ticket</h2>
+    <form onSubmit={handleSubmit}>
+      <h2 className="font-semibold mb-3">Crear Ticket</h2>
 
-      <input
+      <input className="border p-2 rounded w-full mb-2"
         name="nroInventario"
-        placeholder="Nro Inventario"
+        placeholder="Inventario"
         value={form.nroInventario}
         onChange={handleChange}
       />
 
-      <br />
-
-      <input
+      <input className="border p-2 rounded w-full mb-2"
         name="serie"
         placeholder="Serie"
         value={form.serie}
         onChange={handleChange}
       />
 
-      <br />
-
-      <input
+      <input className="border p-2 rounded w-full mb-2"
         name="problema"
         placeholder="Problema"
         value={form.problema}
         onChange={handleChange}
       />
 
-      <br />
-
-      {/* ✅ Tipo daño */}
-      <select name="tipoDano" value={form.tipoDano} onChange={handleChange}>
-        <option value={1}>Daño de fábrica</option>
-        <option value={2}>Daño de usuario</option>
-        <option value={3}>Software</option>
-      </select>
-
-      <br />
-
-      {/* ✅ Garantía */}
-      <select
-        name="procedeGarantia"
-        value={form.procedeGarantia}
-        onChange={(e) =>
-          setForm({
-            ...form,
-            procedeGarantia: e.target.value === "true",
-          })
-        }
-      >
-        <option value="true">Sí</option>
-        <option value="false">No</option>
-      </select>
-
-      <br />
-
-      <button type="submit">Crear</button>
+      <button className="bg-green-500 text-white px-4 py-2 rounded">
+        Crear
+      </button>
     </form>
   );
 }
