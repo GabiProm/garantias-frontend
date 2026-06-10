@@ -17,22 +17,22 @@ import DetalleTicket from "./pages/DetalleTicket";
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex">
-        
+      <div className="flex h-screen">
+
         {/* ✅ SIDEBAR */}
         <Sidebar />
 
         {/* ✅ CONTENIDO */}
-        <div className="flex-1 p-6 bg-gray-100 min-h-screen">
+        <div className="flex-1 bg-gray-100 p-6 overflow-auto">
+
           <Routes>
             <Route path="/crear" element={<CrearTicket />} />
             <Route path="/buscar" element={<BuscarTicket />} />
             <Route path="/lista" element={<ListaTickets />} />
             <Route path="/detalle/:id" element={<DetalleTicket />} />
-
-            {/* ✅ default */}
             <Route path="/" element={<ListaTickets />} />
           </Routes>
+
         </div>
 
       </div>

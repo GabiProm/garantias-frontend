@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* ✅ TU CONFIG BASE (KEEP IT) */
 :root {
@@ -50,7 +48,6 @@ body {
 /* ✅ TIPOGRAFÍA BASE */
 h1, h2, h3 {
   font-family: var(--heading);
-  color: var(--text-h);
 }
 
 h1 {

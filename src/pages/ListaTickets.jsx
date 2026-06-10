@@ -36,7 +36,7 @@ function ListaTickets() {
   };
 
   return (
-    <div className="bg-white p-6 rounded shadow">
+    <div className="bg-white p-6 rounded-lg shadow">
 
       <h2 className="text-xl font-semibold mb-4">
         Lista de Tickets
