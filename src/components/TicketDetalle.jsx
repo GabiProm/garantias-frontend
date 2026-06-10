@@ -108,6 +108,23 @@ function TicketDetalle({ ticket, onUpdated }) {
                 ? new Date(ticket.fechaReporte).toLocaleDateString()
                 : "-"}
             </p>
+            
+            <p>
+              <b>Fecha Validación:</b>{" "}
+              {ticket.fechaValidacion
+                ? new Date(ticket.fechaValidacion).toLocaleDateString()
+                : "-"}
+            </p>
+
+            <p>
+              <b>Procede Garantía:</b>{" "}
+              {ticket.procedeGarantia || "-"}
+            </p>
+
+            <p>
+              <b>Observación:</b>{" "}
+              {ticket.observacion || "-"}
+            </p>
 
             <p>
               <b>Fecha Gestión:</b>{" "}
@@ -139,7 +156,7 @@ function TicketDetalle({ ticket, onUpdated }) {
                   key={d.id}
                   className="p-3 bg-white rounded border shadow-sm"
                 >
-                  <b>{d.componente}</b> - {d.tipoGarantia}
+                  <b>{d.componente}</b>
                   {d.observaciones && (
                     <div className="text-gray-500 text-sm">
                       {d.observaciones}
@@ -154,23 +171,41 @@ function TicketDetalle({ ticket, onUpdated }) {
 
       {/* 🔴 ACCIONES */}
       {activeTab === "acciones" && (
-        <div className="bg-gray-50 p-5 rounded-lg shadow mb-6 transition-all duration-300 ease-in-out animate-fadeIn">
+        <div
+            key={activeTab}
+            className="space-y-6 animate-slideFadeIn"
+          >
 
-          <h3 className="font-semibold text-lg mb-3">
-            Acciones
-          </h3>
+            {/* ✅ AGREGAR COMPONENTE */}
+            <div className="bg-white p-5 rounded-xl shadow border">
 
-          <AddComponente
-            ticketId={ticket.id}
-            onAdded={reloadDetalle}
-          />
+              <h3 className="text-lg font-semibold mb-4">
+                ➕ Agregar Componente
+              </h3>
 
-          <UpdateTicket
-            ticket={ticket}
-            onUpdated={reloadDetalle}
-          />
+              <AddComponente
+                ticketId={ticket.id}
+                onAdded={reloadDetalle}
+              />
 
-        </div>
+            </div>
+
+            {/* ✅ ACTUALIZAR TICKET */}
+            <div className="bg-white p-5 rounded-xl shadow border">
+
+              <h3 className="text-lg font-semibold mb-4">
+                ✏️ Actualizar Ticket
+              </h3>
+
+              <UpdateTicket
+                ticket={ticket}
+                onUpdated={reloadDetalle}
+              />
+
+            </div>
+
+          </div>
+
       )}
 
     </div>

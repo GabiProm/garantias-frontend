@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { getComponentes } from "../api/componentes.api";
 import { agregarComponente } from "../api/tickets.api";
 import api from "../api/axios";
+import toast from "react-hot-toast";
+import { Plus } from "lucide-react";
 
 function AddComponente({ ticketId, onAdded }) {
   const [componentes, setComponentes] = useState([]);
@@ -62,7 +64,7 @@ function AddComponente({ ticketId, onAdded }) {
         observaciones: form.observaciones,
       });
 
-      alert("✅ Componente agregado");
+      toast.success("Componente agregado"); // ✅ NUEVO
 
       onAdded();
 
@@ -75,14 +77,13 @@ function AddComponente({ ticketId, onAdded }) {
 
     } catch (error) {
       console.error(error);
-      alert("Error al agregar");
+      toast.error("❌ Error al agregar componente"); // ✅ NUEVO
     }
   };
 
   
   return (
     <form onSubmit={handleSubmit} style={{ marginTop: "20px" }}>
-      <h3>Agregar Componente</h3>
 
       {/* ✅ EXISTENTE */}
       <select
@@ -106,8 +107,8 @@ function AddComponente({ ticketId, onAdded }) {
 
       <p>--- o ---</p>
 
-      {/* ✅ NUEVO COMPONENTE */}
-      <input
+      {/* ✅ NUEVO COMPONENTE */} 
+      <textarea
         placeholder="Nuevo componente"
         value={form.nuevoComponente}
         onChange={(e) =>
@@ -117,31 +118,22 @@ function AddComponente({ ticketId, onAdded }) {
             componenteId: "", // limpiar selección
           })
         }
+        className="w-full max-w-xs bg-gray-100 border border-gray-300 px-3 py-2 rounded-lg resize-none
+                  focus:bg-white focus:ring-2 focus:ring-blue-400 outline-none transition"
+        rows={1}
       />
 
       <br />
 
-      <input
-        placeholder="Tipo Garantia"
-        value={form.tipoGarantia}
-        onChange={(e) =>
-          setForm({ ...form, tipoGarantia: e.target.value })
-        }
-      />
+      <button
+        type="submit"
+        className="mt-3 flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg 
+                  hover:bg-blue-600 transition transform hover:scale-105 active:scale-95 shadow"
+      >
+        <Plus size={18} />
+        Agregar
+      </button>
 
-      <br />
-
-      <input
-        placeholder="Observaciones"
-        value={form.observaciones}
-        onChange={(e) =>
-          setForm({ ...form, observaciones: e.target.value })
-        }
-      />
-
-      <br />
-
-      <button type="submit">Agregar</button>
     </form>
   );
 }

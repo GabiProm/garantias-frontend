@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { getTickets, deleteTicket } from "../api/tickets.api";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function ListaTickets() {
   const [tickets, setTickets] = useState([]);
@@ -29,9 +30,11 @@ function ListaTickets() {
 
     try {
       await deleteTicket(id);
+      toast.success("Ticket eliminado"); // ✅ NUEVO
       loadTickets(); // 🔁 refresca lista
     } catch (error) {
       console.error(error);
+      toast.error("❌ Error al eliminar ticket"); // ✅ NUEVO
     }
   };
 

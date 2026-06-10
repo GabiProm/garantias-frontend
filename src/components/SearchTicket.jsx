@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { buscarTicket } from "../api/tickets.api";
+import toast from "react-hot-toast";
 
 function SearchTicket({ onResult }) {
   const [serie, setSerie] = useState("");
@@ -17,7 +18,7 @@ function SearchTicket({ onResult }) {
       onResult(res.data);
     } catch (error) {
       console.error(error);
-      alert("No encontrado");
+      toast.error("❌ Ticket no encontrado"); // ✅ NUEVO
     }
   };
 

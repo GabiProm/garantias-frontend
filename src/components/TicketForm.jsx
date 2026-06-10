@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { createTicket } from "../api/tickets.api";
+import toast from "react-hot-toast";
+
 
 function TicketForm({ onCreated }) {
   const [form, setForm] = useState({
@@ -24,7 +26,7 @@ function TicketForm({ onCreated }) {
 
     try {
       await createTicket(form);
-      alert("✅ Ticket creado");
+      toast.success("Ticket creado con éxito"); // ✅ NUEVO
 
       onCreated(); // 🔥 recargar lista
 
@@ -37,6 +39,7 @@ function TicketForm({ onCreated }) {
       });
     } catch (error) {
       console.error(error);
+      toast.error("❌ Error al crear ticket"); // ✅ NUEVO
     }
   };
 
