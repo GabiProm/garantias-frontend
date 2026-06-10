@@ -17,3 +17,11 @@ export const updateTicket = (params, data) =>
 // ✅ Agregar componente
 export const agregarComponente = (id, data) =>
   api.post(`/tickets/${id}/agregar-componente`, data);
+
+// ✅ Obtener ticket por ID
+export const getTicketById = (id) =>
+  api.get(`/tickets/${id}`);
+
+// ✅ Eliminar ticket
+export const deleteTicket = (id) =>
+  api.delete(`/tickets/${id}`);
