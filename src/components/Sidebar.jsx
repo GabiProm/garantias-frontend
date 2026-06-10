@@ -1,15 +1,16 @@
 import { NavLink } from "react-router-dom";
+import { FileText, Search, List } from "lucide-react";
 
 function Sidebar() {
   return (
     <div className="w-64 min-h-screen bg-blue-900 text-blue-100 p-6 shadow-lg">
 
-      {/* ✅ LOGO / TITULO */}
+      {/* ✅ TITULO */}
       <h2 className="text-2xl font-bold mb-8 text-white">
-         WARRANTY SYSTEM
+        Garantías System
       </h2>
 
-      {/* ✅ MENÚ */}
+      {/* ✅ MENU */}
       <nav className="space-y-2">
 
         <NavLink
@@ -21,7 +22,8 @@ function Sidebar() {
               : "hover:bg-blue-800"}`
           }
         >
-          🧾 <span>Crear Ticket</span>
+          <FileText size={18} />
+          <span>Crear Ticket</span>
         </NavLink>
 
         <NavLink
@@ -33,7 +35,8 @@ function Sidebar() {
               : "hover:bg-blue-800"}`
           }
         >
-          🔍 <span>Buscar Ticket</span>
+          <Search size={18} />
+          <span>Buscar Ticket</span>
         </NavLink>
 
         <NavLink
@@ -45,7 +48,8 @@ function Sidebar() {
               : "hover:bg-blue-800"}`
           }
         >
-          📋 <span>Lista de Tickets</span>
+          <List size={18} />
+          <span>Lista de Tickets</span>
         </NavLink>
 
       </nav>

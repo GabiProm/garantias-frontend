@@ -36,86 +36,97 @@ function ListaTickets() {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow">
+    <div className="bg-white p-6 rounded-xl shadow">
 
-      <h2 className="text-xl font-semibold mb-4">
+      <h2 className="text-xl font-semibold mb-6">
         Lista de Tickets
       </h2>
 
-      <table className="w-full border text-sm">
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
 
-        <thead className="bg-gray-200">
-          <tr>
-            <th className="p-2">Serie</th>
-            <th className="p-2">Inventario</th>
-            <th className="p-2">Problema</th>
-            <th className="p-2">Fecha Reporte</th>
-            <th className="p-2">Fecha Gestión</th>
-            <th className="p-2">Estado</th>
-            <th className="p-2">Acción</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {tickets.map((t) => (
-            <tr key={t.id} className="border-t text-center">
-
-              {/* ✅ DATOS */}
-              <td className="p-2">{t.serie || "-"}</td>
-              <td className="p-2">{t.nroInventario || "-"}</td>
-              <td className="p-2">{t.problema || "-"}</td>
-
-              {/* ✅ FECHAS */}
-              <td className="p-2">
-                {t.fechaReporte
-                  ? new Date(t.fechaReporte).toLocaleDateString()
-                  : "-"}
-              </td>
-
-              <td className="p-2">
-                {t.fechaGestionGarantia
-                  ? new Date(t.fechaGestionGarantia).toLocaleDateString()
-                  : "-"}
-              </td>
-
-              {/* ✅ ESTADO */}
-              <td className="p-2">
-                <span
-                  className={`px-2 py-1 rounded text-xs font-semibold
-                  ${
-                    t.estado === "Cerrado"
-                      ? "bg-red-100 text-red-600"
-                      : "bg-green-100 text-green-600"
-                  }`}
-                >
-                  {t.estado || "-"}
-                </span>
-              </td>
-
-              {/* ✅ ACCIONES */}
-              <td className="p-2 space-x-2">
-
-                <button
-                  className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                  onClick={() => navigate(`/detalle/${t.id}`)}
-                >
-                  Ver
-                </button>
-
-                <button
-                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                  onClick={() => handleDelete(t.id)}
-                >
-                  Eliminar
-                </button>
-
-              </td>
-
+          {/* ✅ HEADER */}
+          <thead>
+            <tr className="text-left border-b text-gray-600">
+              <th className="p-3">Serie</th>
+              <th className="p-3">Inventario</th>
+              <th className="p-3">Problema</th>
+              <th className="p-3">Fecha Reporte</th>
+              <th className="p-3">Fecha Gestión</th>
+              <th className="p-3">Estado</th>
+              <th className="p-3">Acción</th>
             </tr>
-          ))}
-        </tbody>
+          </thead>
 
-      </table>
+          {/* ✅ BODY */}
+          <tbody>
+            {tickets.map((t) => (
+              <tr
+                key={t.id}
+                className="border-b hover:bg-gray-50 transition"
+              >
+
+                <td className="p-3 font-medium">{t.serie || "-"}</td>
+
+                <td className="p-3 text-gray-600">
+                  {t.nroInventario || "-"}
+                </td>
+
+                <td className="p-3">
+                  {t.problema || "-"}
+                </td>
+
+                <td className="p-3 text-gray-500">
+                  {t.fechaReporte
+                    ? new Date(t.fechaReporte).toLocaleDateString()
+                    : "-"}
+                </td>
+
+                <td className="p-3 text-gray-500">
+                  {t.fechaGestionGarantia
+                    ? new Date(t.fechaGestionGarantia).toLocaleDateString()
+                    : "-"}
+                </td>
+
+                {/* ✅ ESTADO ESTILO BADGE */}
+                <td className="p-3">
+                  <span
+                    className={`px-3 py-1 text-xs rounded-full font-semibold
+                    ${
+                      t.estado === "Cerrado"
+                        ? "bg-red-100 text-red-600"
+                        : "bg-green-100 text-green-600"
+                    }`}
+                  >
+                    {t.estado || "-"}
+                  </span>
+                </td>
+
+                {/* ✅ ACCIONES MODERNAS */}
+                <td className="p-3 space-x-2">
+
+                  <button
+                    className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition text-xs"
+                    onClick={() => navigate(`/detalle/${t.id}`)}
+                  >
+                    Ver
+                  </button>
+
+                  <button
+                    className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition text-xs"
+                    onClick={() => handleDelete(t.id)}
+                  >
+                    Eliminar
+                  </button>
+
+                </td>
+
+              </tr>
+            ))}
+          </tbody>
+
+        </table>
+      </div>
     </div>
   );
 }
