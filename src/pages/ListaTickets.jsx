@@ -63,7 +63,7 @@ function ListaTickets() {
             {tickets.map((t) => (
               <tr
                 key={t.id}
-                className="border-b hover:bg-gray-50 transition"
+                className="border-b hover:bg-gray-50 transition-all duration-200 hover:scale-[1.01]"
               >
 
                 <td className="p-3 font-medium">{t.serie || "-"}</td>
