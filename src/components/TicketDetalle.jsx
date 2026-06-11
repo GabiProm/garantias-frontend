@@ -87,9 +87,10 @@ function TicketDetalle({ ticket, onUpdated }) {
 
             <p><b>Serie:</b> {ticket.serie || "-"}</p>
             <p><b>Inventario:</b> {ticket.nroInventario || "-"}</p>
-
             <p><b>Problema:</b> {ticket.problema || "-"}</p>
             <p><b>Tipo Daño:</b> {ticket.tipoDano || "-"}</p>
+            <p><b>Ticket Rimac:</b> {ticket.ticketRimac || "-"}</p>
+            <p><b>Nro Caso:</b> {ticket.nroCaso || "-"}</p>
 
             <p>
               <b>Estado:</b>
