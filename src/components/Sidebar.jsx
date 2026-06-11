@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { FileText, Search, List } from "lucide-react";
+import { FileText, Search, List, BarChart3 } from "lucide-react";
 
 function Sidebar() {
   return (
@@ -52,6 +52,20 @@ function Sidebar() {
           <span>Lista de Tickets</span>
         </NavLink>
 
+        <NavLink
+          to="/dashboard"
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
+            ${
+              isActive
+                ? "bg-blue-500 text-white shadow"
+                : "hover:bg-blue-800"
+            }`
+          }
+        >
+          <BarChart3 size={18} />
+          <span>Dashboard</span>
+        </NavLink>
       </nav>
 
       {/* ✅ FOOTER */}

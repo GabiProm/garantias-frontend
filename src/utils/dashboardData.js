@@ -1,0 +1,83 @@
+// ✅ 1. GARANTÍA (SI / NO)
+export const getGarantiaData = (tickets) => {
+  const si = tickets.filter(t => t.procedeGarantia === "Sí").length;
+  const no = tickets.filter(t => t.procedeGarantia === "No").length;
+
+  return [
+    { name: "Sí", value: si },
+    { name: "No", value: no }
+  ];
+};
+
+// ✅ 2. TIPO DE DAÑO
+export const getTipoDanoData = (tickets) => {
+  const map = {};
+
+  tickets.forEach(t => {
+    if (!map[t.tipoDano]) map[t.tipoDano] = 0;
+    map[t.tipoDano]++;
+  });
+
+  return Object.keys(map).map(key => ({
+    name: key,
+    value: map[key]
+  }));
+};
+
+// ✅ 3. CASOS POR MES + AÑO
+export const getCasosPorMes = (tickets) => {
+  const meses = {};
+
+  tickets.forEach(t => {
+    const date = new Date(t.fechaReporte);
+    const mes = date.toLocaleString("es-ES", { month: "short" });
+    const year = date.getFullYear();
+
+    const key = `${mes}`;
+
+    if (!meses[key]) meses[key] = { mes };
+
+    if (!meses[key][year]) meses[key][year] = 0;
+
+    meses[key][year]++;
+  });
+
+  return Object.values(meses);
+};
+
+// ✅ 4. TRIMESTRES
+export const getCasosPorTrimestre = (tickets) => {
+  const map = {};
+
+  tickets.forEach(t => {
+    const year = new Date(t.fechaReporte).getFullYear();
+    const trimestre = t.trimestre === "-" ? "Sin dato" : t.trimestre;
+
+    if (!map[trimestre]) map[trimestre] = { trimestre };
+
+    if (!map[trimestre][year]) map[trimestre][year] = 0;
+
+    map[trimestre][year]++;
+  });
+
+  return Object.values(map);
+};
+
+// ✅ 5. RANKING COMPONENTES
+export const getRankingComponentes = (tickets) => {
+  const map = {};
+
+  tickets.forEach(t => {
+    t.detalles.forEach(d => {
+      if (!map[d.componente]) map[d.componente] = 0;
+      map[d.componente]++;
+    });
+  });
+
+  return Object.keys(map)
+    .map(key => ({
+      name: key,
+      value: map[key]
+    }))
+    .sort((a, b) => b.value - a.value);
+};

@@ -8,6 +8,7 @@ export default App;
 */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
+import Dashboard from "./pages/Dashboard";
 
 import CrearTicket from "./pages/CrearTicket";
 import BuscarTicket from "./pages/BuscarTicket";
@@ -30,6 +31,7 @@ function App() {
             <Route path="/buscar" element={<BuscarTicket />} />
             <Route path="/lista" element={<ListaTickets />} />
             <Route path="/detalle/:id" element={<DetalleTicket />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/" element={<ListaTickets />} />
           </Routes>
 
