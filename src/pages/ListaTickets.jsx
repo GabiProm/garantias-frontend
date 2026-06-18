@@ -106,7 +106,7 @@ function ListaTickets() {
                 </td>
 
                 {/* ✅ ACCIONES MODERNAS */}
-                <td className="p-3 space-x-2">
+                <td className="p-3"> <div className="flex items-center gap-2 whitespace-nowrap">
 
                   <button
                     className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition text-xs"
@@ -121,7 +121,7 @@ function ListaTickets() {
                   >
                     Eliminar
                   </button>
-
+                  </div>
                 </td>
 
               </tr>

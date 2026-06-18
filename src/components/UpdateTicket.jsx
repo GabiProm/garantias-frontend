@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { updateTicket, buscarTicket } from "../api/tickets.api";
+import { updateTicketById, buscarTicket, getTicketById } from "../api/tickets.api";
 import toast from "react-hot-toast";
 
 function UpdateTicket({ ticket, onUpdated }) {
@@ -35,7 +35,7 @@ function UpdateTicket({ ticket, onUpdated }) {
         : "",
 
       observacion: ticket.observacion || "",
-
+      /*
       tipoDano:
         ticket.tipoDano === "Daño por usuario"
           ? "1"
@@ -44,7 +44,13 @@ function UpdateTicket({ ticket, onUpdated }) {
           : ticket.tipoDano === "Software"
           ? "3"
           : "",
-
+      */
+     
+      tipoDano:
+          ticket.tipoDanoId != null
+            ? String(ticket.tipoDanoId)
+            : "",
+ 
       procedeGarantia:
         ticket.procedeGarantia === "Sí"
           ? "true"
@@ -74,19 +80,21 @@ function UpdateTicket({ ticket, onUpdated }) {
     e.preventDefault();
 
     try {
+      /*
       const params = {};
 
       if (ticket.serie) params.serie = ticket.serie;
       else if (ticket.nroInventario)
         params.nroInventario = ticket.nroInventario;
-
+      */
+      const id = ticket.id;
       const data = {
         fechaReporte: form.fechaReporte || null,
         fechaValidacion: form.fechaValidacion || null,
         fechaGestionGarantia:
           form.fechaGestionGarantia || null,
         observacion: form.observacion,
-        tipoDano: form.tipoDano ? parseInt(form.tipoDano) : null,
+        tipoDano: form.tipoDano === "" ? null : parseInt(form.tipoDano),
         procedeGarantia:
           form.procedeGarantia === ""
             ? null
@@ -95,14 +103,14 @@ function UpdateTicket({ ticket, onUpdated }) {
         nroCaso: form.nroCaso || null,
       };
 
-      await updateTicket(params, data);
+      await updateTicketById(id, data);
 
       toast.success("Ticket actualizado"); // ✅ NUEVO
 
-      const res = await buscarTicket(params);
+      const res = await getTicketById(id);
 
       onUpdated(res.data);
-
+      /*
       setForm({
         fechaValidacion: "",
         fechaGestionGarantia: "",
@@ -111,7 +119,7 @@ function UpdateTicket({ ticket, onUpdated }) {
         procedeGarantia: "",
         ticketRimac: "",
         nroCaso: "",
-      });
+      });*/
 
     } catch (error) {
       console.error(error);
@@ -197,7 +205,7 @@ function UpdateTicket({ ticket, onUpdated }) {
           <select
             value={form.tipoDano}
             onChange={(e) =>
-              setForm({ ...form, tipoDano: e.target.value })
+              setForm({ ...form, tipoDano: e.target.value || "" })
             }
             className={`w-full border p-2 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none
               ${isFieldChanged("tipoDano")
@@ -205,7 +213,7 @@ function UpdateTicket({ ticket, onUpdated }) {
                 : "border-gray-300"}`}
           >
             <option value="">Seleccionar</option>
-            <option value="1">Daño por usuario</option>
+            <option value="1">Daño de usuario</option>
             <option value="2">Daño de fábrica</option>
             <option value="3">Software</option>
           </select>

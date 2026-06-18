@@ -14,6 +14,10 @@ export const buscarTicket = (params) =>
 export const updateTicket = (params, data) =>
   api.put("/tickets/buscar", data, { params });
 
+// ✅ NUEVO - UPDATE POR ID (CORRECTO 🔥)
+export const updateTicketById = (id, data) =>
+  api.put(`/tickets/${id}`, data);
+
 // ✅ Agregar componente
 export const agregarComponente = (id, data) =>
   api.post(`/tickets/${id}/agregar-componente`, data);

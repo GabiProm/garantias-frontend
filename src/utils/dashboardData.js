@@ -11,18 +11,34 @@ export const getGarantiaData = (tickets) => {
 
 // ✅ 2. TIPO DE DAÑO
 export const getTipoDanoData = (tickets) => {
-  const map = {};
+  const counts = {
+    1: 0,
+    2: 0,
+    3: 0
+  };
 
   tickets.forEach(t => {
-    if (!map[t.tipoDano]) map[t.tipoDano] = 0;
-    map[t.tipoDano]++;
+    let id = t.tipoDanoId;
+
+    // 🔥 fallback si no viene el id
+    if (id == null) {
+      if (t.tipoDano === "Daño por usuario") id = 1;
+      else if (t.tipoDano === "Daño de fábrica") id = 2;
+      else if (t.tipoDano === "Software") id = 3;
+    }
+
+    if (id != null) {
+      counts[id]++;
+    }
   });
 
-  return Object.keys(map).map(key => ({
-    name: key,
-    value: map[key]
-  }));
+  return [
+    { name: "Software", value: counts[3] },
+    { name: "Daño de fábrica", value: counts[2] },
+    { name: "Daño por usuario", value: counts[1] }
+  ];
 };
+
 
 // ✅ 3. CASOS POR MES + AÑO
 export const getCasosPorMes = (tickets) => {
