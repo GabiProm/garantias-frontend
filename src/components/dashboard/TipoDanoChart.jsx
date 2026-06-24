@@ -42,7 +42,7 @@ export default function TipoDanoChart({ data }) {
             radius={[6, 6, 0, 0]}
             barSize={70}   // ✅ más grande
           >
-            <LabelList dataKey="value" position="top" />
+            <LabelList dataKey="value" position="insideTop" fill="#ffffff" style={{ fontWeight: "bold" }} formatter={(value) => (value === 0 ? "0" : value)} />
 
             {data.map((entry, index) => {
               let color = "#3b82f6";
