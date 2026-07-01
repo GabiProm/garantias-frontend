@@ -1,16 +1,154 @@
-# React + Vite
+# Garantias Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend desarrollado en React para la gestión de garantías de equipos Lenovo. Permite registrar incidencias, realizar seguimiento, gestionar componentes reemplazados y visualizar métricas operativas mediante dashboards interactivos.
 
-Currently, two official plugins are available:
+## Tecnologías
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React
+- Vite
+- JavaScript
+- Tailwind CSS
+- Axios
+- Recharts
+- React Router DOM
+- html2canvas
+- docx
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Principales Funcionalidades
 
-## Expanding the ESLint configuration
+### Gestión de Tickets
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Creación de tickets
+- Búsqueda de tickets por serie
+- Actualización de información
+- Gestión de acciones realizadas
+- Seguimiento de estados
+
+### Gestión de Componentes
+
+- Registro de componentes reemplazados
+- Historial de cambios
+- Visualización por ticket
+
+### Dashboard
+
+- Total de tickets
+- Tickets abiertos y cerrados
+- Garantías procedentes y no procedentes
+- Casos por mes
+- Casos por trimestre
+- Ranking de componentes
+- Distribución de tipos de daño
+
+### Reportes
+
+- Exportación de informe Word
+- Inclusión automática de gráficos
+- Resumen ejecutivo
+- Indicadores KPI
+
+---
+
+## Arquitectura
+
+```text
+src
+│
+├── api
+├── components
+│   └── dashboard
+├── pages
+├── services
+├── utils
+├── assets
+└── App.jsx
+```
+
+---
+
+## Capturas del Sistema
+
+### Dashboard
+
+- KPIs operativos
+- Gráficos interactivos
+- Filtros por fecha
+
+### Gestión de Tickets
+
+- Registro de incidencias
+- Consulta por serie
+- Administración de componentes
+
+---
+
+## Instalación
+
+Clonar repositorio:
+
+```bash
+git clone <URL_REPOSITORIO>
+```
+
+Instalar dependencias:
+
+```bash
+npm install
+```
+
+Ejecutar aplicación:
+
+```bash
+npm run dev
+```
+
+Compilar para producción:
+
+```bash
+npm run build
+```
+
+---
+
+## Integración Backend
+
+Este frontend consume la API:
+
+```text
+Garantias.API
+```
+
+Tecnologías backend:
+
+- .NET 8
+- Entity Framework Core
+- SQL Server
+
+---
+
+## Proyecto Relacionado
+
+### Backend
+
+🔗 Garantias.API
+
+### QA Automation
+
+🔗 Garantias-QA
+
+Automatización implementada con:
+
+- Playwright
+- Postman
+- Newman
+- GitHub Actions
+
+---
+
+## Autor
+
+Henry Gabriel Gómez Gerónimo
+
+Ingeniero Electrónico | Soporte TI N2 | QA Automation | DevOps Enthusiast
