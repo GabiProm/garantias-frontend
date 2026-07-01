@@ -41,6 +41,7 @@ function TicketDetalle({ ticket, onUpdated }) {
       <div className="flex space-x-6 border-b mb-6">
 
         <button
+          data-testid="tab-informacion"
           onClick={() => setActiveTab("info")}
           className={`pb-2 transition-all duration-200 hover:text-blue-500 ${
             activeTab === "info"
@@ -52,6 +53,7 @@ function TicketDetalle({ ticket, onUpdated }) {
         </button>
 
         <button
+          data-testid="tab-componentes"
           onClick={() => setActiveTab("componentes")}
           className={`pb-2 transition-all duration-200 hover:text-blue-500 ${
             activeTab === "componentes"
@@ -63,6 +65,7 @@ function TicketDetalle({ ticket, onUpdated }) {
         </button>
 
         <button
+          data-testid="tab-acciones"
           onClick={() => setActiveTab("acciones")}
           className={`pb-2 transition-all duration-200 hover:text-blue-500 ${
             activeTab === "acciones"
@@ -85,16 +88,16 @@ function TicketDetalle({ ticket, onUpdated }) {
 
           <div className="grid grid-cols-2 gap-4 text-sm">
 
-            <p><b>Serie:</b> {ticket.serie || "-"}</p>
-            <p><b>Inventario:</b> {ticket.nroInventario || "-"}</p>
-            <p><b>Problema:</b> {ticket.problema || "-"}</p>
-            <p><b>Tipo Daño:</b> {ticket.tipoDano || "-"}</p>
-            <p><b>Ticket Rimac:</b> {ticket.ticketRimac || "-"}</p>
-            <p><b>Nro Caso:</b> {ticket.nroCaso || "-"}</p>
+            <p><b>Serie:</b><span data-testid="detalle-serie"> {ticket.serie || "-"}</span></p>
+            <p><b>Inventario:</b><span data-testid="detalle-inventario"> {ticket.nroInventario || "-"}</span></p>
+            <p><b>Problema:</b><span data-testid="detalle-problema"> {ticket.problema || "-"}</span></p>
+            <p><b>Tipo Daño:</b><span data-testid="detalle-tipo-dano"> {ticket.tipoDano || "-"}</span></p>
+            <p><b>Ticket Rimac:</b><span data-testid="detalle-ticket-rimac"> {ticket.ticketRimac || "-"}</span></p>
+            <p><b>Nro Caso:</b><span data-testid="detalle-nro-caso"> {ticket.nroCaso || "-"}</span></p>
 
             <p>
               <b>Estado:</b>
-              <span className={`ml-2 px-2 py-1 rounded text-xs font-semibold
+              <span data-testid="detalle-estado" className={`ml-2 px-2 py-1 rounded text-xs font-semibold
                 ${ticket.estado === "Cerrado"
                   ? "bg-red-100 text-red-600"
                   : "bg-green-100 text-green-600"
@@ -105,33 +108,43 @@ function TicketDetalle({ ticket, onUpdated }) {
 
             <p>
               <b>Fecha Reporte:</b>{" "}
-              {ticket.fechaReporte
-                ? new Date(ticket.fechaReporte).toLocaleDateString()
-                : "-"}
+              <span data-testid="detalle-fecha-reporte">
+                {ticket.fechaReporte
+                  ? new Date(ticket.fechaReporte).toLocaleDateString()
+                  : "-"}
+              </span>
             </p>
             
             <p>
               <b>Fecha Validación:</b>{" "}
-              {ticket.fechaValidacion
-                ? new Date(ticket.fechaValidacion).toLocaleDateString()
-                : "-"}
+              <span data-testid="detalle-fecha-validacion">
+                {ticket.fechaValidacion
+                  ? new Date(ticket.fechaValidacion).toLocaleDateString()
+                  : "-"}
+              </span>
             </p>
 
             <p>
               <b>Procede Garantía:</b>{" "}
-              {ticket.procedeGarantia || "-"}
+              <span data-testid="detalle-garantia">
+                {ticket.procedeGarantia || "-"}
+              </span>
             </p>
 
             <p>
               <b>Observación:</b>{" "}
-              {ticket.observacion || "-"}
+              <span data-testid="detalle-observacion">
+                {ticket.observacion || "-"}
+              </span>
             </p>
 
             <p>
               <b>Fecha Gestión:</b>{" "}
-              {ticket.fechaGestionGarantia
-                ? new Date(ticket.fechaGestionGarantia).toLocaleDateString()
-                : "-"}
+              <span data-testid="detalle-fecha-gestion">
+                {ticket.fechaGestionGarantia
+                  ? new Date(ticket.fechaGestionGarantia).toLocaleDateString()
+                  : "-"}
+              </span>
             </p>
 
           </div>
@@ -154,6 +167,7 @@ function TicketDetalle({ ticket, onUpdated }) {
             <ul className="space-y-2">
               {detalles.map((d) => (
                 <li
+                  data-testid="detalle-componente"
                   key={d.id}
                   className="p-3 bg-white rounded border shadow-sm"
                 >

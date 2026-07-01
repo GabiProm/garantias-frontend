@@ -27,12 +27,14 @@ function SearchTicket({ onResult }) {
       <h2 className="font-semibold mb-3">Buscar Ticket</h2>
 
       <input
+        data-testid="txt-buscar-serie"
         className="border p-2 rounded w-full mb-2"
         placeholder="Serie"
         value={serie}
         onChange={(e) => setSerie(e.target.value)}
       />
       <input
+        data-testid="txt-buscar-inventario"
         className="border p-2 rounded w-full mb-2"
         placeholder="Inventario"
         value={inventario}
@@ -40,6 +42,7 @@ function SearchTicket({ onResult }) {
       />
 
       <button
+        data-testid="btn-buscar-ticket"
         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         onClick={handleSearch}
       >

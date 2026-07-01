@@ -87,6 +87,7 @@ function AddComponente({ ticketId, onAdded }) {
 
       {/* ✅ EXISTENTE */}
       <select
+        data-testid="cmb-componente"
         value={form.componenteId}
         onChange={(e) =>
           setForm({
@@ -109,6 +110,7 @@ function AddComponente({ ticketId, onAdded }) {
 
       {/* ✅ NUEVO COMPONENTE */} 
       <textarea
+        data-testid="txt-nuevo-componente"
         placeholder="Nuevo componente"
         value={form.nuevoComponente}
         onChange={(e) =>
@@ -126,6 +128,7 @@ function AddComponente({ ticketId, onAdded }) {
       <br />
 
       <button
+        data-testid="btn-agregar-componente"
         type="submit"
         className="mt-3 flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg 
                   hover:bg-blue-600 transition transform hover:scale-105 active:scale-95 shadow"

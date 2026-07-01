@@ -139,6 +139,7 @@ function Dashboard() {
           <div className="flex flex-col">
             <label className="text-xs text-gray-500 mb-1">Desde</label>
             <input
+              data-testid="filtro-fecha-desde"
               type="date"
               value={fechaDesde}
               onChange={(e) => setFechaDesde(e.target.value)}
@@ -150,6 +151,7 @@ function Dashboard() {
           <div className="flex flex-col">
             <label className="text-xs text-gray-500 mb-1">Hasta</label>
             <input
+              data-testid="filtro-fecha-hasta"
               type="date"
               value={fechaHasta}
               onChange={(e) => setFechaHasta(e.target.value)}
@@ -159,6 +161,7 @@ function Dashboard() {
 
           {/* LIMPIAR */}
           <button
+            data-testid="btn-limpiar-filtros"
             onClick={() => {
               setFechaDesde("");
               setFechaHasta("");
@@ -169,35 +172,37 @@ function Dashboard() {
           </button>
 
           <button
-          onClick={async () => {
+            data-testid="btn-exportar-word"
+            onClick={async () => {
 
-          const imgGarantias = await captureChart("chart-garantias");
-          const imgTipoDano = await captureChart("chart-tipo-dano");
-          const imgRanking = await captureChart("chart-ranking");
+            const imgGarantias = await captureChart("chart-garantias");
+            const imgTipoDano = await captureChart("chart-tipo-dano");
+            const imgRanking = await captureChart("chart-ranking");
 
-          generateInformeWord({
-            fechaDesde,
-            fechaHasta,
-            filteredTickets,
-            totalTickets,
-            abiertos,
-            cerrados,
-            garantiasSi,
-            garantiasNo,
-            imgGarantias,
-            imgTipoDano,
-            imgRanking,
-            dataTipoDano,
-            dataRanking
-          });
-        }}
-          className="px-3 py-2 bg-green-600 text-white rounded-lg text-sm"
-        >
-          Exportar Informe Word
-        </button>
+            generateInformeWord({
+              fechaDesde,
+              fechaHasta,
+              filteredTickets,
+              totalTickets,
+              abiertos,
+              cerrados,
+              garantiasSi,
+              garantiasNo,
+              imgGarantias,
+              imgTipoDano,
+              imgRanking,
+              dataTipoDano,
+              dataRanking
+            });
+          }}
+            className="px-3 py-2 bg-green-600 text-white rounded-lg text-sm"
+          >
+            Exportar Informe Word
+          </button>
 
           {/* ✅ SHORTCUT: 7 DÍAS */}
           <button
+            data-testid="btn-ultimos-7-dias"
             onClick={() => {
               const hoy = new Date();
               const hace7 = new Date();
@@ -213,6 +218,7 @@ function Dashboard() {
 
           {/* ✅ SHORTCUT: MES */}
           <button
+            data-testid="btn-este-mes"
             onClick={() => {
               const hoy = new Date();
               const inicioMes = new Date(
@@ -250,36 +256,36 @@ function Dashboard() {
 
             <div className="bg-red-50 border-l-4 border-red-500 p-5 rounded-2xl shadow">
               <p className="text-sm text-gray-500">Total Tickets</p>
-              <h2 className="text-3xl font-bold text-red-700">{totalTickets}</h2>         
+              <h2 data-testid="kpi-total-tickets" className="text-3xl font-bold text-red-700">{totalTickets}</h2>         
             </div>
 
             <div className="bg-green-50 border-l-4 border-green-500 p-5 rounded-2xl shadow">
               <p className="text-sm text-gray-600">Garantía Sí</p>
-              <h2 className="text-3xl font-bold text-green-700">{garantiasSi}</h2>      
+              <h2 data-testid="kpi-garantia-si" className="text-3xl font-bold text-green-700">{garantiasSi}</h2>      
             </div>
 
             <div className="bg-yellow-50 border-l-4 border-yellow-500 p-5 rounded-2xl shadow">
               <p className="text-sm text-gray-600">Abiertos</p>
-              <h2 className="text-3xl font-bold text-yellow-700">{abiertos}</h2>
+              <h2 data-testid="kpi-abiertos" className="text-3xl font-bold text-yellow-700">{abiertos}</h2>
             </div>
 
             <div className="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-2xl shadow">
               <p className="text-sm text-gray-600">Cerrados</p>
-              <h2 className="text-3xl font-bold text-blue-700">{cerrados}</h2>
+              <h2 data-testid="kpi-cerrados" className="text-3xl font-bold text-blue-700">{cerrados}</h2>
             </div>
 
           </div>
 
           {/* ✅ GARANTÍA + TIPO DAÑO */}
 
-          <div id="chart-garantias" className="bg-white p-5 rounded-2xl shadow mt-4 hover:shadow-lg transition" style={{ backgroundColor: "#ffffff" }}>
+          <div data-testid="chart-garantias" id="chart-garantias" className="bg-white p-5 rounded-2xl shadow mt-4 hover:shadow-lg transition" style={{ backgroundColor: "#ffffff" }}>
             <h3 className="text-lg font-semibold text-gray-700 mb-4">
               Procede Garantía
             </h3>
             <GarantiaChart data={getGarantiaData(filteredTickets)} />
           </div>
 
-          <div id="chart-tipo-dano" className="bg-white p-5 rounded-2xl shadow mt-4 hover:shadow-lg transition" style={{ backgroundColor: "#ffffff" }}>
+          <div data-testid="chart-tipo-dano" id="chart-tipo-dano" className="bg-white p-5 rounded-2xl shadow mt-4 hover:shadow-lg transition" style={{ backgroundColor: "#ffffff" }}>
             <h3 className="text-lg font-semibold text-gray-700 mb-4">
               Tipo de Daño
             </h3>
@@ -287,7 +293,7 @@ function Dashboard() {
           </div>
 
           {/* ✅ MES */}
-          <div className="bg-white p-5 rounded-2xl shadow mt-4 hover:shadow-lg transition" style={{ backgroundColor: "#ffffff" }}>
+          <div data-testid="chart-mes" className="bg-white p-5 rounded-2xl shadow mt-4 hover:shadow-lg transition" style={{ backgroundColor: "#ffffff" }}>
             <h3 className="text-lg font-semibold text-gray-700 mb-4">
               Casos por Mes
             </h3>
@@ -295,7 +301,7 @@ function Dashboard() {
           </div>
 
           {/* ✅ TRIMESTRE */}
-          <div className="bg-white p-5 rounded-2xl shadow mt-4 hover:shadow-lg transition" style={{ backgroundColor: "#ffffff" }}>
+          <div data-testid="chart-trimestre" className="bg-white p-5 rounded-2xl shadow mt-4 hover:shadow-lg transition" style={{ backgroundColor: "#ffffff" }}>
             <h3 className="text-lg font-semibold text-gray-700 mb-4">
               Casos por Trimestre
             </h3>
@@ -303,7 +309,7 @@ function Dashboard() {
           </div>
 
           {/* ✅ RANKING */}
-          <div id="chart-ranking" className="bg-white p-5 rounded-2xl shadow mt-4 hover:shadow-lg transition" style={{ backgroundColor: "#ffffff" }}>
+          <div  data-testid="chart-ranking" id="chart-ranking" className="bg-white p-5 rounded-2xl shadow mt-4 hover:shadow-lg transition" style={{ backgroundColor: "#ffffff" }}>
             <h3 className="text-lg font-semibold text-gray-700 mb-4">
               Ranking de Componentes
             </h3>

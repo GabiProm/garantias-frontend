@@ -47,28 +47,36 @@ function TicketForm({ onCreated }) {
     <form onSubmit={handleSubmit}>
       <h2 className="font-semibold mb-3">Crear Ticket</h2>
 
-      <input className="border p-2 rounded w-full mb-2"
+      <input 
+        data-testid="txt-inventario"
+        className="border p-2 rounded w-full mb-2"
         name="nroInventario"
         placeholder="Inventario"
         value={form.nroInventario}
         onChange={handleChange}
       />
 
-      <input className="border p-2 rounded w-full mb-2"
+      <input 
+        data-testid="txt-serie"
+        className="border p-2 rounded w-full mb-2"
         name="serie"
         placeholder="Serie"
         value={form.serie}
         onChange={handleChange}
       />
 
-      <input className="border p-2 rounded w-full mb-2"
+      <input 
+        data-testid="txt-problema"
+        className="border p-2 rounded w-full mb-2"
         name="problema"
         placeholder="Problema"
         value={form.problema}
         onChange={handleChange}
       />
 
-      <button className="bg-green-500 text-white px-4 py-2 rounded">
+      <button 
+        data-testid="btn-crear-ticket"
+        className="bg-green-500 text-white px-4 py-2 rounded">
         Crear
       </button>
     </form>

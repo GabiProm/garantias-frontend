@@ -203,6 +203,7 @@ function UpdateTicket({ ticket, onUpdated }) {
             Tipo de Daño
           </label>
           <select
+            data-testid="cmb-tipo-dano"
             value={form.tipoDano}
             onChange={(e) =>
               setForm({ ...form, tipoDano: e.target.value || "" })
@@ -225,6 +226,7 @@ function UpdateTicket({ ticket, onUpdated }) {
             Procede Garantía
           </label>
           <select
+            data-testid="cmb-procede-garantia"
             value={form.procedeGarantia}
             onChange={(e) =>
               setForm({ ...form, procedeGarantia: e.target.value })
@@ -246,6 +248,7 @@ function UpdateTicket({ ticket, onUpdated }) {
             Ticket Rimac
           </label>
           <input
+            data-testid="txt-ticket-rimac"
             type="text"
             value={form.ticketRimac}
             onChange={(e) =>
@@ -264,6 +267,7 @@ function UpdateTicket({ ticket, onUpdated }) {
             Nro Caso
           </label>
           <input
+            data-testid="txt-nro-caso"
             type="text"
             value={form.nroCaso}
             onChange={(e) =>
@@ -283,6 +287,7 @@ function UpdateTicket({ ticket, onUpdated }) {
           Observación
         </label>
         <textarea
+          data-testid="txt-observacion"
           value={form.observacion}
           onChange={(e) =>
             setForm({ ...form, observacion: e.target.value })
@@ -297,6 +302,7 @@ function UpdateTicket({ ticket, onUpdated }) {
       {/* ✅ BOTÓN */}
       <div className="flex justify-end">
         <button
+          data-testid="btn-actualizar-ticket"
           type="submit"
           disabled={!isChanged}
           className={`px-5 py-2 rounded-lg text-white transition
