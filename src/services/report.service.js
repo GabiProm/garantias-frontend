@@ -3,8 +3,8 @@ import { Packer,  Document, Paragraph, TextRun, Table, TableRow, TableCell, Alig
 } from "docx";
 
 import { saveAs } from "file-saver";
-import encabezado from "../assets/encabezado.png"
-import piedepagina from "../assets/piedepagina.png"
+import encabezado from "../assets/encabezado.PNG"
+import piedepagina from "../assets/piedepagina.PNG"
 
 // ✅ Helper celda
 const cell = (text, bold = false) =>
