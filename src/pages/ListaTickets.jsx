@@ -213,6 +213,7 @@ function ListaTickets() {
 
           {/* 📊 EXPORT */}
           <button
+            data-testid="btn-exportar-excel"
             onClick={() => exportTicketsToExcel(filteredTickets)}
             disabled={filteredTickets.length === 0}
             className={`px-3 py-2 rounded-lg text-white text-sm
